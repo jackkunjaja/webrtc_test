@@ -1,8 +1,8 @@
 streamlit
 streamlit_webrtc
 pydantic
-pydub
 json
 hashlib
 zipfile
 dataclasses
+pydub

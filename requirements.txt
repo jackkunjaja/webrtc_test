@@ -1,8 +1,9 @@
-streamlit
-streamlit_webrtc
-pydantic
 json
 hashlib
 zipfile
 dataclasses
+queue
+streamlit
+streamlit_webrtc
+pydantic
 pydub

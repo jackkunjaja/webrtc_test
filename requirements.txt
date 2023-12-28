@@ -1,6 +1,4 @@
-hashlib
-zipfile
-dataclasses
+dataclasses-json
 streamlit
 streamlit_webrtc
 pydantic

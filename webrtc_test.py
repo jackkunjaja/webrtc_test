@@ -5,7 +5,7 @@ from streamlit_webrtc import webrtc_streamer
 #import logging
 
 st.title('Streamlit App Test')
-st.write('Hello world')
+st.write('Hello world2')
 
 #st_webrtc_logger = logging.getLogger("streamlit_webrtc")
 #st_webrtc_logger.setLevel(logging.WARNING)

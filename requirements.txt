@@ -1,2 +1,9 @@
 streamlit
 streamlit_webrtc
+pydantic
+pydub
+queue
+json
+hashlib
+zipfile
+dataclasses

@@ -1,2 +1,2 @@
 streamlit
-webrtc_streamer
+streamlit_webrtc

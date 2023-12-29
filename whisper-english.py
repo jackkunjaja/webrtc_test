@@ -129,6 +129,7 @@ def main():
     RECORD_DIR.mkdir(exist_ok=True)
 
     # whisper model
+    print(whisper.__path__)
     st.session_state["ASR_MODEL"] = whisper.load_model("base")
 
     # セッション状態の管理

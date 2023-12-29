@@ -103,7 +103,7 @@ def format_string(s):
     return s
 
 def transcribe(file_path, model):
-    result = model.transcribe(str(file_path))
+    result = model.transcribe(str(file_path), verbose=True)
     return format_string(result["text"])
 
 def async_transcribe(question, model):
@@ -127,6 +127,9 @@ def main():
     # 録音ファイルの保存先の設定
     RECORD_DIR = Path("./records")
     RECORD_DIR.mkdir(exist_ok=True)
+
+    # whisper model
+    st.session_state["ASR_MODEL"] = whisper.load_model("base")
 
     # セッション状態の管理
     if 'current_question_index' not in st.session_state:
@@ -156,6 +159,9 @@ def main():
             for i, script in enumerate(scripts)
         ]
 
+    print(f"st.session_state['current_question_index']: {st.session_state['current_question_index']}")
+    print(f"st.session_state['questions']: {st.session_state['questions']}")
+
     # 現在の問題を取得
     question = Question(
         script_index = st.session_state["current_question_index"],
@@ -174,7 +180,7 @@ def main():
 
     # 次の問題へ
     if st.button("Next >") and question.wav_file_path.exists(): # 音声ファイルがない場合 次へ行く
-        current_question = st.session_state['questions'][st.session_s['current_question_index']]
+        current_question = st.session_state['questions'][st.session_state['current_question_index']]
         # トランスクリプションをバックグラウンドで開始
         start_transcription_thread(current_question)
         # 次の問題へ移動

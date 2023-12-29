@@ -2,8 +2,8 @@ dataclasses-json
 streamlit
 streamlit_webrtc
 pydantic==1.10.12
-pydub
 ffmpeg
 ffmpeg-python
+pydub
 opencv-python-headless
 openai-whisper

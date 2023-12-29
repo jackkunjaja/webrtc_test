@@ -3,4 +3,4 @@ streamlit
 streamlit_webrtc
 pydantic==1.10.12
 pydub
-whisper
+openai-whisper

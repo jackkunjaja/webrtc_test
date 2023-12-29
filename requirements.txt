@@ -3,6 +3,7 @@ streamlit
 streamlit_webrtc
 pydantic==1.10.12
 pydub
-openai-whisper
+ffmpeg
 ffmpeg-python
 opencv-python-headless
+openai-whisper

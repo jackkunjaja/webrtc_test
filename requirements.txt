@@ -1,5 +1,5 @@
 dataclasses-json
-ffmpeg-python
+ffmpeg
 streamlit
 streamlit_webrtc
 audio-recorder-streamlit

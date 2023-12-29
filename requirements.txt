@@ -5,3 +5,4 @@ pydantic==1.10.12
 pydub
 openai-whisper
 ffmpeg-python
+opencv-python-headless

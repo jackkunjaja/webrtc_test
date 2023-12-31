@@ -136,10 +136,26 @@ def transcribe(file_path, model):
     #result = model.transcribe(str(file_path), verbose=True)
     print(f"{file_path} transcribe...")
     st.write(f"{file_path} transcribe...")
+
+    # https://github.com/SYSTRAN/faster-whisper/blob/master/faster_whisper/vad.py#L14
+    '''
+    vad_parameters = 
+      threshold: float = 0.5
+      min_speech_duration_ms: int = 250
+      max_speech_duration_s: float = float("inf")
+      min_silence_duration_ms: int = 2000
+      window_size_samples: int = 1024
+      speech_pad_ms: int = 400
     segments, info = model.transcribe(
     	str(file_path),
     	beam_size=5,
     	vad_filter=True,
+      vad_parameters=vad_parameters,
+    	without_timestamps=True,)
+    '''
+    segments, info = model.transcribe(
+    	str(file_path),
+    	beam_size=5,
     	without_timestamps=True,)
     print(f"lang:({info.language}) prob:({info.language_probability}) duration:({info.duration})")
     st.write(f"lang:({info.language}) prob:({info.language_probability}) duration:({info.duration})")
@@ -193,8 +209,8 @@ def main():
     #print(whisper.__path__)
     #model_str = "tiny"
     #model_str = "base"
-    #model_str = "small"
-    model_str = "medium"
+    model_str = "small"
+    #model_str = "medium" # Streamlit Cloud ではメモリ足りない
     #model_str = "large"
     #model_str = "large-v3"
     #st.session_state["ASR_MODEL"] = whisper.load_model(model_str)

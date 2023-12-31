@@ -66,17 +66,22 @@ class WebRTCRecord:
             st.session_state["audio_buffer"] = pydub.AudioSegment.empty()
 
     def recording(self, question):
+        print("recording IN.")
         status_box = st.empty()
 
         while True:
+            print("recording start...")
             if self.webrtc_ctx.audio_receiver:
                 try:
+                    print("Try get_frames...")
                     audio_frames = self.webrtc_ctx.audio_receiver.get_frames(timeout=1)
                 except queue.Empty:
                     status_box.warning("No frame arrived.")
+                    print("No frame arrived.")
                     continue
 
                 status_box.info("Now Recording...")
+                print("Now Recording...")
 
                 sound_chunk = pydub.AudioSegment.empty()
                 for audio_frame in audio_frames:
@@ -111,6 +116,7 @@ class WebRTCRecord:
             st.write(f"File：{question.wav_file_path}")
             st.write(f"聞き取り：{transcript}")
 
+        print("recording OUT.")
 
 
 import threading
@@ -126,6 +132,8 @@ def format_string(s):
 
 def transcribe(file_path, model):
     #result = model.transcribe(str(file_path), verbose=True)
+    print(f"{file_path} transcribe...")
+    st.write(f"{file_path} transcribe...")
     segments, info = model.transcribe(
     	str(file_path),
     	beam_size=5,
@@ -164,13 +172,15 @@ import json
 
 def main():
 
+    print("main#0")
     # 録音ファイルの保存先の設定
     RECORD_DIR = Path("./records")
     RECORD_DIR.mkdir(exist_ok=True)
 
     # セッション状態の管理
-    if 'current_question_index' not in st.session_state:
-        st.session_state['current_question_index'] = 0
+    #if 'current_question_index' not in st.session_state:
+    #    st.session_state['current_question_index'] = 0
+    st.session_state['current_question_index'] = 0
 
     # whisper model
     #print(whisper.__path__)
@@ -182,7 +192,6 @@ def main():
     #model_str = "large-v3"
     #st.session_state["ASR_MODEL"] = whisper.load_model(model_str)
     st.session_state["ASR_MODEL"] = WhisperModel(model_str, device="cpu", compute_type="int8")
-
 
     # 問題文を読み込む
     script_file_path = Path('scripts/en.json')
@@ -208,8 +217,8 @@ def main():
             for i, script in enumerate(scripts)
         ]
 
-    print(f"st.session_state['current_question_index']: {st.session_state['current_question_index']}")
-    print(f"st.session_state['questions']: {st.session_state['questions']}")
+    #print(f"st.session_state['current_question_index']: {st.session_state['current_question_index']}")
+    #print(f"st.session_state['questions']: {st.session_state['questions']}")
 
     # 現在の問題を取得
     question = Question(
@@ -219,6 +228,7 @@ def main():
         wav_dir_path = RECORD_DIR,
     )
 
+    print("main#1")
     # 読み上げ文を表示
     st.markdown(f"# {question.script}")
 
@@ -226,12 +236,13 @@ def main():
     webrtc_record = WebRTCRecord()
     webrtc_record.recording(question)
 
+    print("main#10")
 
     # 次の問題へ
     if st.button("Next >") and question.wav_file_path.exists(): # 音声ファイルがない場合 次へ行く
         current_question = st.session_state['questions'][st.session_state['current_question_index']]
         # トランスクリプションをバックグラウンドで開始
-        start_transcription_thread(current_question)
+        #start_transcription_thread(current_question)
         # 次の問題へ移動
         st.session_state["current_question_index"] += 1
 
@@ -260,6 +271,7 @@ def main():
         if st.button("画面を更新"):
             st.rerun()
 
+    print("main#100")
 
 if __name__ == "__main__":
     main()

@@ -71,7 +71,8 @@ class WebRTCRecord:
             #print("recording start...")
             if self.webrtc_ctx.audio_receiver:
                 try:
-                    print("Try get_frames...")
+                    #print("Try get_frames...")
+                    status_box.info("Try get_frames...")
                     audio_frames = self.webrtc_ctx.audio_receiver.get_frames(timeout=1)
                 except queue.Empty:
                     status_box.warning("No frame arrived.")
@@ -79,7 +80,7 @@ class WebRTCRecord:
                     continue
 
                 status_box.info("Now Recording...")
-                print("Now Recording...")
+                #print("Now Recording...")
 
                 sound_chunk = pydub.AudioSegment.empty()
                 for audio_frame in audio_frames:

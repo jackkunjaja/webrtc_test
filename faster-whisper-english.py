@@ -67,11 +67,11 @@ class WebRTCRecord:
             st.session_state["audio_buffer"] = pydub.AudioSegment.empty()
 
     def recording(self, question):
-        print("recording IN.")
+        #print("recording IN.")
         status_box = st.empty()
 
         while True:
-            print("recording start...")
+            #print("recording start...")
             if self.webrtc_ctx.audio_receiver:
                 try:
                     print("Try get_frames...")
@@ -118,7 +118,7 @@ class WebRTCRecord:
             st.write(f"File：{question.wav_file_path} ({file_size} Byte)")
             st.write(f"聞き取り：{transcript}")
 
-        print("recording OUT.")
+        #print("recording OUT.")
 
 
 import threading
@@ -230,7 +230,7 @@ def main():
         wav_dir_path = RECORD_DIR,
     )
 
-    print("main#1")
+    #print("main#1")
     # 読み上げ文を表示
     st.markdown(f"# {question.script}")
 
@@ -238,7 +238,7 @@ def main():
     webrtc_record = WebRTCRecord()
     webrtc_record.recording(question)
 
-    print("main#10")
+    #print("main#10")
 
     # 次の問題へ
     if st.button("Next >") and question.wav_file_path.exists(): # 音声ファイルがない場合 次へ行く

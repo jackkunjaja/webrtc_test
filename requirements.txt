@@ -1,9 +1,10 @@
 dataclasses-json
-ffmpeg
+#ffmpeg
 streamlit
 streamlit_webrtc
 audio-recorder-streamlit
 pydantic==1.10.12
 pydub
 opencv-python-headless
-openai-whisper
+#openai-whisper
+faster-whisper

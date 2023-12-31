@@ -142,6 +142,8 @@ def transcribe(file_path, model):
     	vad_filter=True,
     	without_timestamps=True,)
     print("Detected language '%s' with probability %f" % (info.language, info.language_probability))
+    st.write(f"Detected language ({info.language}) with probability ({info.language_probability})")
+
     text = ""
     for segment in segments:
         print("[%.2fs -> %.2fs] %s" % (segment.start, segment.end, segment.text))

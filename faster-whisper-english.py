@@ -141,9 +141,11 @@ def transcribe(file_path, model):
     	beam_size=5,
     	vad_filter=True,
     	without_timestamps=True,)
-    print("Detected language '%s' with probability %f" % (info.language, info.language_probability))
-    st.write(f"Detected language ({info.language}) with probability ({info.language_probability})")
+    print(f"lang:({info.language}) prob:({info.language_probability}) duration:({info.duration})")
+    st.write(f"lang:({info.language}) prob:({info.language_probability}) duration:({info.duration})")
 
+    print(f"len(segments): {len(segments)}")
+    st.write(f"len(segments): {len(segments)}")
     text = ""
     for segment in segments:
         print("[%.2fs -> %.2fs] %s" % (segment.start, segment.end, segment.text))

@@ -144,8 +144,6 @@ def transcribe(file_path, model):
     print(f"lang:({info.language}) prob:({info.language_probability}) duration:({info.duration})")
     st.write(f"lang:({info.language}) prob:({info.language_probability}) duration:({info.duration})")
 
-    print(f"len(segments): {len(segments)}")
-    st.write(f"len(segments): {len(segments)}")
     text = ""
     for segment in segments:
         print("[%.2fs -> %.2fs] %s" % (segment.start, segment.end, segment.text))

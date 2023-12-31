@@ -188,8 +188,8 @@ def main():
     #json_load = json.load(json_open)
     json_load = {
       "scripts": [
-        # "The cat sat on the mat.",
-        # "I like to eat apples and bananas.",
+        "The cat sat on the mat.",
+        "I like to eat apples and bananas.",
         "My friend is very kind."
       ]
     }

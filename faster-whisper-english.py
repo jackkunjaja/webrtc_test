@@ -231,6 +231,7 @@ def main():
         # 次の問題へ移動
         st.session_state["current_question_index"] += 1
 
+    st.write(f"聞き取り：{question.transcript}")
 
     # 結果表示画面
     if st.session_state['current_question_index'] >= len(scripts):

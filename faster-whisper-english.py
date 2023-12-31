@@ -108,6 +108,7 @@ class WebRTCRecord:
             # ここで変換してみる
             model = st.session_state["ASR_MODEL"]
             transcript = transcribe(question.wav_file_path, model)
+            st.write(f"File：{question.wav_file_path}")
             st.write(f"聞き取り：{transcript}")
 
 
@@ -134,6 +135,7 @@ def transcribe(file_path, model):
     text = ""
     for segment in segments:
         print("[%.2fs -> %.2fs] %s" % (segment.start, segment.end, segment.text))
+        st.write(f"{segment.text}")
         text += segment.text
 
     #return format_string(result["text"])

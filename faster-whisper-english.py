@@ -162,20 +162,21 @@ def main():
     RECORD_DIR = Path("./records")
     RECORD_DIR.mkdir(exist_ok=True)
 
-    # whisper model
-    #print(whisper.__path__)
-    #model_str = "tiny"
-    #model_str = "base"
-    #model_str = "small"
-    #model_str = "medium"
-    #model_str = "large"
-    model_str = "large-v3"
-    #st.session_state["ASR_MODEL"] = whisper.load_model(model_str)
-    st.session_state["ASR_MODEL"] = WhisperModel(model_str, device="cpu", compute_type="int8")
-
     # セッション状態の管理
     if 'current_question_index' not in st.session_state:
         st.session_state['current_question_index'] = 0
+
+    # whisper model
+    #print(whisper.__path__)
+    #model_str = "tiny"
+    model_str = "base"
+    #model_str = "small"
+    #model_str = "medium"
+    #model_str = "large"
+    #model_str = "large-v3"
+    #st.session_state["ASR_MODEL"] = whisper.load_model(model_str)
+    st.session_state["ASR_MODEL"] = WhisperModel(model_str, device="cpu", compute_type="int8")
+
 
     # 問題文を読み込む
     script_file_path = Path('scripts/en.json')

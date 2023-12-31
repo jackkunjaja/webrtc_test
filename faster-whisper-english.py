@@ -40,7 +40,6 @@ class WebRTCRecord:
         #st_webrtc_logger.setLevel(logging.WARNING)
         #st_webrtc_logger.setLevel(logging.DEBUG)
         #print("set webtrc_logger to DEBUG.")
-        #'''
         self.webrtc_ctx = webrtc_streamer(
             key="sendonly-audio",
             mode=WebRtcMode.SENDONLY,
@@ -51,17 +50,15 @@ class WebRTCRecord:
                 "audio": True,
             },
         )
-        '''
-        self.webrtc_ctx = webrtc_streamer(
-            key="sendonly-audio",
-            mode=WebRtcMode.SENDONLY,
-            #audio_receiver_size=256,
-            audio_receiver_size=512,
-            media_stream_constraints={
-                "audio": True,
-            }
-        )
-        '''
+        #self.webrtc_ctx = webrtc_streamer(
+        #    key="sendonly-audio",
+        #    mode=WebRtcMode.SENDONLY,
+        #    #audio_receiver_size=256,
+        #    audio_receiver_size=512,
+        #    media_stream_constraints={
+        #        "audio": True,
+        #    }
+        #)
 
         if "audio_buffer" not in st.session_state:
             st.session_state["audio_buffer"] = pydub.AudioSegment.empty()
@@ -138,25 +135,24 @@ def transcribe(file_path, model):
     st.write(f"{file_path} transcribe...")
 
     # https://github.com/SYSTRAN/faster-whisper/blob/master/faster_whisper/vad.py#L14
-    '''
-    vad_parameters = 
-      threshold: float = 0.5
-      min_speech_duration_ms: int = 250
-      max_speech_duration_s: float = float("inf")
-      min_silence_duration_ms: int = 2000
-      window_size_samples: int = 1024
-      speech_pad_ms: int = 400
+    # vad_parameters=dict(min_silence_duration_ms=500)
+    #vad_parameters = 
+    #  threshold: float = 0.5
+    #  min_speech_duration_ms: int = 250
+    #  max_speech_duration_s: float = float("inf")
+    #  min_silence_duration_ms: int = 2000
+    #  window_size_samples: int = 1024
+    #  speech_pad_ms: int = 400
+    #segments, info = model.transcribe(
+    # str(file_path),
+    # beam_size=5,
+    # vad_filter=True,
+    # vad_parameters=vad_parameters,
+    # without_timestamps=True,)
+
     segments, info = model.transcribe(
     	str(file_path),
-    	beam_size=5,
-    	vad_filter=True,
-      vad_parameters=vad_parameters,
-    	without_timestamps=True,)
-    '''
-    segments, info = model.transcribe(
-    	str(file_path),
-    	beam_size=5,
-    	without_timestamps=True,)
+    	beam_size=5,)
     print(f"lang:({info.language}) prob:({info.language_probability}) duration:({info.duration})")
     st.write(f"lang:({info.language}) prob:({info.language_probability}) duration:({info.duration})")
 

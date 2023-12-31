@@ -115,7 +115,7 @@ class WebRTCRecord:
             model = st.session_state["ASR_MODEL"]
             transcript = transcribe(question.wav_file_path, model)
             file_size = os.path.getsize(question.wav_file_path)
-            st.write(f"File：{question.wav_file_path} ({file_size} Byte")
+            st.write(f"File：{question.wav_file_path} ({file_size} Byte)")
             st.write(f"聞き取り：{transcript}")
 
         print("recording OUT.")
@@ -145,7 +145,7 @@ def transcribe(file_path, model):
     text = ""
     for segment in segments:
         print("[%.2fs -> %.2fs] %s" % (segment.start, segment.end, segment.text))
-        st.write(f"{segment.text}")
+        st.write(f"[{segment.start:.2f}s -> {segment.end:.2f}s] {segment.text}")
         text += segment.text
 
     #return format_string(result["text"])

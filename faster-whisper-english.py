@@ -32,6 +32,7 @@ import pydub
 import streamlit as st
 from streamlit_webrtc import WebRtcMode, webrtc_streamer
 import logging
+import os
 
 class WebRTCRecord:
     def __init__(self):
@@ -113,7 +114,8 @@ class WebRTCRecord:
             # ここで変換してみる
             model = st.session_state["ASR_MODEL"]
             transcript = transcribe(question.wav_file_path, model)
-            st.write(f"File：{question.wav_file_path}")
+            file_size = os.path.getsize(question.wav_file_path)
+            st.write(f"File：{question.wav_file_path} ({file_size} Byte")
             st.write(f"聞き取り：{transcript}")
 
         print("recording OUT.")

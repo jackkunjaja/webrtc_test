@@ -193,8 +193,8 @@ def main():
     #print(whisper.__path__)
     #model_str = "tiny"
     #model_str = "base"
-    model_str = "small"
-    #model_str = "medium"
+    #model_str = "small"
+    model_str = "medium"
     #model_str = "large"
     #model_str = "large-v3"
     #st.session_state["ASR_MODEL"] = whisper.load_model(model_str)

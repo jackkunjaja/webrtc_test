@@ -105,8 +105,10 @@ class WebRTCRecord:
             # Reset
             st.session_state["audio_buffer"] = pydub.AudioSegment.empty()
 
-
-
+            # ここで変換してみる
+            model = st.session_state["ASR_MODEL"]
+            transcript = transcribe(question.wav_file_path, model)
+            st.write(f"聞き取り：{transcript}")
 
 
 
@@ -231,7 +233,6 @@ def main():
         # 次の問題へ移動
         st.session_state["current_question_index"] += 1
 
-    st.write(f"聞き取り：{question.transcript}")
 
     # 結果表示画面
     if st.session_state['current_question_index'] >= len(scripts):

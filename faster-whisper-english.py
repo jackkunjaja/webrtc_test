@@ -176,6 +176,9 @@ import json
 
 def main():
 
+    logging.basicConfig()
+    logging.getLogger("faster_whisper").setLevel(logging.DEBUG)
+
     print("main#0")
     # 録音ファイルの保存先の設定
     RECORD_DIR = Path("./records")
@@ -189,8 +192,8 @@ def main():
     # whisper model
     #print(whisper.__path__)
     #model_str = "tiny"
-    model_str = "base"
-    #model_str = "small"
+    #model_str = "base"
+    model_str = "small"
     #model_str = "medium"
     #model_str = "large"
     #model_str = "large-v3"

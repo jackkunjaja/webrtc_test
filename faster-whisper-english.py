@@ -129,11 +129,13 @@ def transcribe(file_path, model):
     	vad_filter=True,
     	without_timestamps=True,)
     print("Detected language '%s' with probability %f" % (info.language, info.language_probability))
+    text = ""
     for segment in segments:
         print("[%.2fs -> %.2fs] %s" % (segment.start, segment.end, segment.text))
+        text += segment.text
 
     #return format_string(result["text"])
-    return segment.text
+    return text
 
 import time
 def async_transcribe(question, model):
